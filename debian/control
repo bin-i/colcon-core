@@ -1,0 +1,33 @@
+Source: python-colcon-core
+Section: python
+Priority: optional
+Maintainer: Dmitry Borovoy <dmitry.borovoy@surgut.ru>
+Build-Depends:
+ debhelper-compat (= 12),
+ python3-all,
+ python3-distlib,
+ python3-empy,
+ python3-pkg-resources,
+ python3-pytest,
+ python3-pytest-cov,
+ python3:any (>= 3.5~),
+ python3-setuptools,
+ python3-flake8,
+ pydocstyle
+Standards-Version: 4.5.0
+Homepage: https://github.com/colcon/colcon-core
+Vcs-Git: https://github.com/colcon/colcon-core.git
+Vcs-Browser: https://github.com/colcon/colcon-core
+Rules-Requires-Root: no
+
+Package: python3-colcon-core
+Architecture: all
+Depends: python3-distlib, python3-empy, python3-pkg-resources, python3-pytest, python3-pytest-cov, python3:any (>= 3.5~), python3-setuptools
+Description: Command line tool to build sets of software packages.
+ colcon - collective construction
+ ================================
+ .
+ ``colcon`` is a command line tool to improve the workflow of building, testing and using multiple software packages.
+ It automates the process, handles the ordering and sets up the environment to use the packages.
+ .
+ For more information see `colcon.readthedocs.io <https://colcon.readthedocs.io>`_.

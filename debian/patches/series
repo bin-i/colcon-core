@@ -1,0 +1,3 @@
+setup.cfg.patch
+0001-Setup-find_installed_packages-to-fix-bootstrap-instr.patch
+0002-Don-t-warn-about-overriding-when-building-the-a-work.patch
