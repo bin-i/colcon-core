@@ -1,0 +1,527 @@
+python-colcon-core (0.7.1-2) focal; urgency=medium
+
+  [ Dmitry Borovoy ]
+  * 
+
+  [ Dirk Thomas ]
+  * add Apache license 2.0
+  * define package version
+  * add setup files
+  * add flake8 test, use pytest with coverage
+  * define type for environment variables
+  * logging: use coloredlogs when available, functions to set the log level
+  * add plugin system
+  * add argument parser decorator extension point
+  * add config and log locations
+  * add verb extension point
+  * add command logic
+  * add package descriptor
+  * add package discovery extension point
+  * add package identification extension point
+  * add package augmentation extension point
+  * add package decorator
+  * add topological order
+  * add package selection extension point
+  * add subprocess module
+  * add shell extension point
+  * add event handler extension point
+  * add command, job, output, timer events
+  * add event reactor
+  * add executor extension point
+  * add task extension point
+  * add argument destination collector
+  * add environment extension point
+  * add package discovery extension based on explicitly passed paths
+  * add package identification extension to ignore directories using a marker file
+  * add package identification extension for python packages
+  * add shell extensions for sh and bat including their templates
+  * add event handler extension to pass all output to the console
+  * add event handler extension to print a message when a job is started and finished
+  * add event handler extension to print each command which is being invoked
+  * add executor extension processing all jobs sequentially
+  * add environment extension for PATH
+  * add environment extension for PYTHONPATH
+  * add verb extension for building packages
+  * add task extension to build Python packages
+  * add verb extension for testing packages
+  * add task extension to test Python packages
+  * add python testing step extension invoking setup.py test
+  * add python testing step extension invoking pytest
+  * add colcon script for bootstrapping
+  * add test to check for copyright and license comment
+  * add test to check spelling
+  * add .travis.yml file
+  * skip flake8-import-order on Travis for now since it produces different results
+  * skip the unused word check for now since it produces different results on Travis / Trusty
+  * add second Travis build which bootstraps colcon with itself
+  * add appveyor.yml file
+  * skip pyenchant since enchant is not available on AppVeyor
+  * install mock for Windows CI since it is not available by default
+  * workaround Terminate batch job question
+  * fix race condition in event reactor test
+  * fix installing of shell templates when not using develop
+  * add missing word to the spell check whitelist
+  * add JobSkipped event to enable event handlers reliable reason about all job states
+  * always initialize rc to ensure it is set when e.g. a KeyboardInterrupt is raised
+  * fix prepend-value hook for bat
+  * update path environment to also consider Scripts directory on Windows
+  * fix shell command environment when env is empty or lines don't contain an equal sign
+  * ensure the logging subsystem is initialized consistently
+  * avoid use of pty module on macOS
+  * add warning message when switching from 'install' to 'develop' for packages used by colcon
+  * add missing shell argument to get_environment_variables(), ensure that result is not empty
+  * 0.1.0
+  * make pytest import local to only be used when a package requests it (#5)
+  * upload coverage information to codecov (#4)
+  * improve coverage (#6)
+  * avoid using backslahes on Windows when passing PYTEST_ADDOPTS (#7)
+  * use same name for cache as newer versions of pytest (#8)
+  * fix copy-n-paste comments (#9)
+  * fix trailing characters in batch env vars (#10)
+  * use backslashes consistently in bat (#11)
+  * update noqa rule to match latest flake8-builtins release (#14)
+  * echo to stderr when sourced file is missing (#13)
+  * test with Python 3.6 on Windows (#15)
+  * enumerate duplicate packages in exception (#17)
+  * use rc 0 when pytest has failing tests (#16)
+  * create relative symlink for latest (#22)
+  * use dash for build/run/test dependencies (#23)
+  * also force flush on stderr (#28)
+  * modify destination collector to store option as well as destination (#24)
+  * add CommandEnded to log return code of each invoked command (#25)
+  * add a log file containing all log messages (#29)
+  * update help for --pytest-args (#30)
+  * fix showing Python testing extensions (#32)
+  * add verb specific latest symlink (#31)
+  * fix spelling in argument help (#34)
+  * change default log location (#33)
+  * use newer pytest(-cov) features only when available (#39)
+  * add test failure event (#41)
+  * add setup script, rename prefix script into local_setup (#38)
+  * warn about duplicate entry points (#43)
+  * rename SkipLocationException to IgnoreLocationException (#44)
+  * add stdeb.cfg, update dependencies (#45)
+
+  [ Shane Loretz ]
+  * Travis bootstrap needs pytest-repeat and pytest-rerunfailures (#47)
+
+  [ Dirk Thomas ]
+  * ignore log directory (#46)
+  * follow up of #44 to address style issues
+  * add additional logging into sequential executor and event reactor (#49)
+  * fix documented return type (follow up of #24)
+  * allow passing through kwargs in destination collector (#50)
+  * update package metadata (#51)
+  * use zsh_to_array when available (#55)
+  * add relative time to logger_all.log (#59)
+  * fix aborting build on Windows (#60)
+  * 0.2.0
+  * remove unavailable dependencies in Debian patch (#62)
+  * 0.2.1
+  * override argument parser to fallback to args rather than options (#63)
+  * reduce scope of variable (#64)
+  * 0.2.2
+  * fix handling of paths with spaces (#66)
+  * 0.2.3
+  * declare flake8 import order style (#69)
+  * fix Pytest -o cache_dir option (#67)
+  * avoid creating log directory in package directory during testing (#68)
+  * add pytest-runner as dependency (#72)
+  * generate dummy result file (#74)
+  * create file with run deps for each package, use these for sourcing packages in topological order (#70)
+  * 0.3.0
+  * update Debian patch file
+  * add separate --test-result-base argument (#75)
+  * 0.3.1
+  * refactor package index path into common function (#78)
+  * add marker for install layout (#79)
+  * as a fallback check if dependendencies are available in the environment (#80)
+  * fix docblock of shell extension point (#81)
+  * 0.3.2
+  * rename package index directory (#82)
+  * 0.3.3
+
+  [ Mikael Arguedas ]
+  * improve check and fallback behavior for python executable (#86)
+
+  [ Dirk Thomas ]
+  * 0.3.4
+  * expose file extensions covered by a shell extension (#88)
+  * 0.3.5
+  * setuptools min version (#91)
+  * update Debian patch (#91)
+  * 0.3.6
+  * add function to format duration as hours, minutes and seconds (#93)
+  * use preferred encoding to decode environment variables (#95)
+  * 0.3.7
+  * expose Job task_context (#96)
+  * 0.3.8
+  * support task entry point groups outside of the core (#98)
+  * 0.3.9
+  * only add verb args for the requested verb (#108)
+  * update log.warn (deprecated) to log.warning (#109)
+  * add descriptor for package dependencies (#116)
+  * remove unused variable (#117)
+  * remove more unused variables (follow up of #117)
+
+  [ Matthew Murphy ]
+  * Update python package identification to use DependencyDescriptor (#118)
+  * Update python incompatible version algorithm to use tuple unpacking (#120)
+
+  [ Dirk Thomas ]
+  * 0.3.10
+  * add desc order in changelog link (#121)
+
+  [ Martijn de Roo ]
+  * A set is done inside the if statement and evaluated inside the if statement, therefore the variable should use delayed expansion as variable expansion occurs when the if statement is evaluated. (#122)
+
+  [ Dirk Thomas ]
+  * update code and flake8 arguments to pass with flake8 3.6.x / pycodestyle 2.4.x
+  * ignore F841 until f-strings are used
+  * replace 'typeset' usage in sh with 'command' (#124)
+  * explicitly set log level of pydocstyle (#126)
+  * fix flake8 test logic (#127)
+  * switch to scspell3k (#125)
+  * 0.3.11
+  * handle multiline environment variables (#128)
+  * 0.3.12
+  * create unique log directory, avoiding race (#130)
+  * 0.3.13
+  * underscore prefix shell function which can't be unset (#133)
+
+  [ brawner ]
+  * Enabling symlink creation on Windows (#132)
+  * collections.abc (#136)
+
+  [ Dirk Thomas ]
+  * support package_dir option when using symlink install and empty packages (#137)
+  * 0.3.14
+  * ensure exclusive access of easy_install.pth file (#142)
+  * fix printing help twice (#143)
+  * add OnError enum to configure the executor behavior when a job fails (#144)
+  * use on_error in build and test verb, support on_error in sequential executor, add --continue-on-error to build verb (#145)
+  * add --return-code-on-test-failure to test verb (#146)
+  * refactor update_object for reuse across verbs
+  * clarify docs of parameter
+  * line wrapping only
+  * support latest pytest-rerunfailures release (#152)
+  * support bootstrapping with zsh (#151)
+  * fix symlink replacement logic (#154)
+  * fix multiple usage output on invalid arguments (#155)
+  * 0.3.15
+  * use scspell 2.2 (#158)
+  * bump copyright year before cloning to various other packages (follow up of #158)
+  * print spell checked filenames (follow up of #158)
+  * fix spelling of test function (#159)
+  * spell check setup.py file (follow up of #158)
+  * comply with stricter style checks (#162)
+  * expose create_environment_scripts_only() for downstream reuse
+  * allow absolute subdirectory values in prepend hooks
+  * 0.3.16
+  * fix the order of prepended PYTHONPATH in develop mode if other paths are set in PYTHONPATH (#163)
+  * 0.3.17
+  * add No-Python2 flag to stdeb.cfg to avoid making Python 2 releases by accident (#165)
+  * add new extension point to collect prefix paths (#166)
+  * register prefix_path extension point (#166)
+  * 0.3.18
+
+  [ Scott K Logan ]
+  * Handle missing pytest_cov gracefully (#170)
+  * Switch descriptor filter to list comprehension (#175)
+  * Fix DependencyDescriptor conversion in get_dependencies (#173)
+  * Store DependencyDescriptor in recursive_dependencies (#174)
+  * Store dependency distances on DependencyDescriptors (#172)
+
+  [ Dirk Thomas ]
+  * 0.3.19
+  * accept default event handler values (#178)
+
+  [ Mikael Arguedas ]
+  * fix sourcing empty workspace built with `--merge-install` (#179)
+
+  [ Dirk Thomas ]
+  * avoid duplicate prefix paths (#180)
+  * 0.3.20
+  * use new asyncio.all_tasks if available (#187)
+  * add colcon __main__ module so user can 'python -m colcon' (#188)
+  * fix string formatting of warning message (#190)
+  * 0.3.21
+  * pass loop explicitly (#191)
+  * 0.3.22
+  * support pytest 5.0+ (#200)
+  * use monotonic clock for duration (#201)
+  * add version to package metadata (#202)
+  * 0.3.23
+  * fix linter warning about line length (#207)
+  * generate .dsv files describing the intended environment change
+  * duplicate prefix_util.py to .em template
+  * extend shell extension point to generate shell-specific prefix_util.py which uses the information from .dsv files
+  * update sh shell extension to use .dsv files
+  * update bat shell extension to use .dsv files
+  * minor cleanup (#214)
+  * fix environment calculation to also use .dsv files the ament hooks (#216)
+  * 0.4.0
+  * fix syntax in error case (#221)
+
+  [ Sean Yen ]
+  * Use default expansion for _colcon_python_executable (#222)
+
+  [ Dirk Thomas ]
+  * implement create_hook_set_value for sh and bash (#220)
+
+  [ Dan Rose ]
+  * Replace TypeVar with Optional (#224)
+  * Replace TypeVar with Union (#225)
+  * Stop using easy-install.pth (#219)
+  * add tests for Python build (#230)
+  * Don't make bdist_egg (#228)
+
+  [ Dirk Thomas ]
+  * add COLCON_WARNINGS environment variable (#232)
+  * use non-deprecated logger API (#233)
+  * close file handle after use (#234)
+  * unlink existing symlink before writing evaluate template content to file (#238)
+  * support disabling logging (#240)
+  * add type 'set' for dsv files (#241)
+  * 0.4.1
+
+  [ Scott K Logan ]
+  * Clarify new pytest version requirement (#243)
+
+  [ Dirk Thomas ]
+  * always consider .dsv files, even when no shell specific script exists (#244)
+  * avoid requiring tmp_path introduce in pytest 3.9.0 (#246)
+  * 0.4.2
+
+  [ Jacob Perron ]
+  * Add support for prepending multiple values to env variables from .dsv files (#247)
+
+  [ Dirk Thomas ]
+  * add dsv type set-if-unset (#250)
+  * support more characters in environment variable names on Windows (#249)
+  * check that no arguments are passed to the setup() function in setup.py (#251)
+  * 0.4.3
+
+  [ Dan Rose ]
+  * Allow setup py data to contain Nones (#255)
+
+  [ Dirk Thomas ]
+  * avoid repeated list comprehension (#256)
+  * use a plain str where sufficient (#257)
+
+  [ Jacob Perron ]
+  * Always prepend with a trailing separator (#254)
+
+  [ Dirk Thomas ]
+  * avoid repeated deepcopy of descriptors during identification (#259)
+
+  [ Dan Rose ]
+  * Bump flake8 (#260)
+
+  [ Dirk Thomas ]
+  * fix command to remove trailing separator (#261)
+
+  [ Dan Rose ]
+  * More Pythonic EventReactor (#258)
+
+  [ Dirk Thomas ]
+  * fix setting log base path (#264)
+  * use warning instead of warn in default value (#268)
+  * fix reference in docblock (#269)
+  * remove unused COLCON_LOG_PATH env var (#270)
+  * fix environment for symlinked Python package which have their sources in a subdirectory (#271)
+  * catch KeyboardInterrupt before verb is invoked (#273)
+  * 0.4.4
+  * skip empty lines in dsv files (#275)
+  * improve error message when split for dsv line raises (#277)
+  * add comment with expanded env var name for searchability (#278)
+
+  [ Tobias Blass ]
+  * fixed KeyError in _prepend_unique_value (#276)
+
+  [ Dirk Thomas ]
+  * update constructor docblocks to pass pydocstyle 5.x checks (#280)
+  * fix removing trailing semicolon logic in bat (#279)
+  * add Ubuntu Focal to list of suites (#282)
+  * 0.4.5
+  * apply realpath only for deduplication, keep original path for UI (#283)
+  * use CancelledError from asyncio instead of concurrent.futures (#284)
+  * convert coroutines into tasks (#285)
+  * fix test to raise asyncio.CancelledError (#287)
+  * wrap default value to distinguish from explicitly passed arguments (#288)
+  * 0.5.0
+  * add --pytest-with-coverage option (#292)
+  * 0.5.1
+  * expose prog name used for argparse parser (#293)
+  * 0.5.2
+  * fix flake8-comprehensions warnings (#295)
+  * install test_requires for bootstrap tests (#297)
+  * install all tests_require for bootstrap test (#298)
+  * invoke pytest directly instead of through the setup.py file (#296)
+  * invoke unittest directly instead of through the setup.py file (#299)
+  * fix symlink logic to not delete files in src (#301)
+  * standardize behavior when passing an empty string (#304)
+  * 0.5.3
+
+  [ Dan Rose ]
+  * Speed up colcon list (#307)
+
+  [ Dirk Thomas ]
+  * fix missing function argument in Windows test (#309)
+  * add exclude argument to load_entry_points (#305)
+  * improve performance deepcopying DependencyDescriptors (#313)
+  * 0.5.4
+
+  [ Dan Rose ]
+  * Make colcon list even fasterer (#311)
+
+  [ Dirk Thomas ]
+  * shorten prog to basename if on PATH (#315)
+
+  [ Dan Rose ]
+  * Fix crash in has_test_dependency (#317)
+
+  [ Jose Luis Rivero ]
+  * Generate xunit files valid for the junit10.xsd (#319)
+
+  [ Dirk Thomas ]
+  * add flag to query non-recursive parser argument destinations (#318)
+  * support non-numeric log-level defaults (#320)
+  * 0.5.5
+
+  [ Dan Rose ]
+  * Help text nudge to read the friendly manual (#327)
+
+  [ Dirk Thomas ]
+  * add note to help message that stdout might not be shown by default (#328)
+
+  [ Mikael Arguedas ]
+  * print python coverage results to console (#331)
+
+  [ Dirk Thomas ]
+  *  add JobUnselected event to the build verb  (#326)
+
+  [ Dan Rose ]
+  * rename rc -> completed (#235)
+
+  [ Dirk Thomas ]
+  * add unwrap_default_value function (#332)
+  * Revert "print python coverage results to console (#331)" (#333)
+  * deprecate colcon_core.task.check_output() (#334)
+  * 0.5.6
+  * make import locally to avoid failures when not even being used (#336)
+  * 0.5.7
+  * increase code coverage: deepcopy dependency descriptor, log location, compare package descriptors (#339)
+  * use pytest hook to redirect pytest warnings to stderr (#338)
+  * 0.5.8
+
+  [ Scott K Logan ]
+  * Improve pytest hook compatibility (#340)
+
+  [ Dirk Thomas ]
+  * 0.5.9
+
+  [ Dan Rose ]
+  * Allow ignore_marker to be a dangling symlink (#344)
+
+  [ Dirk Thomas ]
+  * relax timing race in event_reactor test (#345)
+  * make CodeCov results informational, not affecting status (#346)
+
+  [ Sean Yen ]
+  * [windows] fix _colcon_python_executable fallback code path. (#348)
+
+  [ Dirk Thomas ]
+  * suppress stacktrace for RuntimeError raised by event handler (#347)
+  * pass with flake8 3.8 (#350)
+  * fix codecov patch threshold config (#351)
+  * show stderr output if check_output() fails (#353)
+  * fix --python-testing argument (#355)
+  * show the duration for aborted and failed jobs (#356)
+  * 0.5.10
+  * use contextlib.suppress (#358)
+  * rename internal variable returned by pty.openpty (#360)
+  * avoid warning introduced in setuptools 49.2.0 (#361)
+  * catch KeyboardInterrupt in another case to avoid stacktrace (#362)
+  * deprecate env var COLCON_EXTENSION_BLACKLIST in favor of COLCON_EXTENSION_BLOCKLIST (#363)
+  * 0.6.0
+  * improve error message when em.* can't be imported, suggest collision between empy and em (#370)
+
+  [ Mike Purvis ]
+  * Pass --egg-base as relative. (#387)
+
+  [ Dirk Thomas ]
+  * support renaming through package_dir (#386)
+  * move Python dependencies and metadata extraction from identification to augmentation module (#385)
+  * handle Python scripts in symlink install (#389)
+  * reset global state in location module after command finished (#391)
+  * fix quoting in warning message (#395)
+  * 0.6.1
+  * support building Python packages using distutils (#396)
+  * add publish-python.yaml (#397)
+  * fix warnings in CI (#402)
+  * make COLCON_TRACE output of sh sourceable (#403)
+
+  [ Shane Loretz ]
+  * Remove unnecessary symlinks after building modules renamed by packages_dir (#390)
+
+  [ Dirk Thomas ]
+  * fix bootstrapping not using new Python augmentation extension (#405)
+  * fix regression when package dir is symlinked (#406)
+
+  [ Scott K Logan ]
+  * Fix the spelling tests (#415)
+  * Fix regression when enitre workspace is symlinked (#412)
+  * Change import order to pass flake8-import-order, reenable in CI (#410)
+
+  [ Dirk Thomas ]
+  * add more Python versions to the test matrix (#286)
+
+  [ Scott K Logan ]
+  * Assert that the Python build actually succeeds (#413)
+
+  [ Jacob Perron ]
+  * Suppress blind exception flake8 errors (#424)
+
+  [ Scott K Logan ]
+  * Appease the latest flake8 plugin releases (#427)
+  * Escape closing parenthesis in prefix.bat file (#432)
+  * Implement create_hook_append_value (#426)
+
+  [ Shane Loretz ]
+  * Use extras_require[test] instead of tests_require (#444)
+
+  [ Scott K Logan ]
+  * Switch from Travis and AppVeyor to GitHub Actions (#445)
+
+  [ Christophe Bedard ]
+  * Expand shell wildcards in --paths for all platforms (#439)
+
+  [ Scott K Logan ]
+  * Add classes for suppressing argparse type conversion (#416)
+  * Extract test dependencies from [options.extras_require]test (#450)
+  * Switch to unittest.mock (#456)
+  * Merge the pytest configuration (#446)
+  * Handle 'None' in options.extras_require (#457)
+
+  [ Shane Loretz ]
+  * Warn when overriding packages at build time (#449)
+
+  [ Scott K Logan ]
+  * Allow additional Popen arguments through run (#411)
+
+  [ Steven! Ragnarök ]
+  * Update release platforms. (#459)
+
+  [ Scott K Logan ]
+  * Prevent branch CI from failing because of coverage changes (#463)
+  * Update stdeb suites to match publish-python.yaml (#462)
+  * 0.7.0
+  * Demote package override error to a warning (#466)
+  * Update debian patch after changes to setup.cfg (#464)
+  * 0.7.1
+
+  [ Dmitry Borovoy ]
+  * Debianize
+
+ -- Dmitry Borovoy <dvborovoy@sberautotech.ru>  Wed, 16 Feb 2022 18:00:12 +0300
