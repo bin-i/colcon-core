@@ -133,6 +133,10 @@ class BuildVerb(VerbExtensionPoint):
             metavar='PKG_NAME',
             nargs='+',
             help='Allow building packages that exist in underlay workspaces')
+        parser.add_argument(
+            '--allow-overriding-all',
+            action='store_true',
+            help='Allow building all packages that exist in underlay workspaces')
         add_executor_arguments(parser)
         add_event_handler_arguments(parser)
 
@@ -172,7 +176,7 @@ class BuildVerb(VerbExtensionPoint):
         override_messages = {}
         for overlay_package in jobs.keys():
             if overlay_package in underlay_packages:
-                if overlay_package not in context.args.allow_overriding:
+                if overlay_package not in context.args.allow_overriding and not context.args.override_messages_all:
                     override_messages[overlay_package] = (
                         "'{overlay_package}'".format_map(locals()) +
                         ' is in: ' +
